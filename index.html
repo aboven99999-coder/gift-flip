@@ -1,131 +1,37 @@
-<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GIFT FLIP PRO</title><script src="https://telegram.org"></script><style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Segoe UI,sans-serif}
-body{background:#facc15 radial-gradient(#eab308 18%,transparent 19%) 0 0/70px 70px;color:#1c1917;min-height:100vh;padding:12px;display:flex;justify-content:center}
-.card{width:100%;max-width:560px;background:#fef9c3;border:3px solid #ca8a04;border-radius:18px;padding:16px;box-shadow:0 10px 25px rgba(0,0,0,.12)}
-.hide{display:none!important}
-.btn{width:100%;padding:11px;border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;margin-top:8px}
-.dark{background:#1c1917;color:#facc15}.grn{background:#15803d;color:#fff}.amb{background:#d97706;color:#fff}.pur{background:#6d28d9;color:#fff}
-.sm{padding:7px 12px;font-size:13px;width:auto;margin:0}
-.bar{display:flex;justify-content:space-between;align-items:center;padding-bottom:10px;margin-bottom:12px;border-bottom:2px solid #eab308;gap:6px}
-.bdg{padding:4px 9px;border-radius:8px;font-size:12px;font-weight:700;background:#fef08a;color:#854d0e}
-.pro{background:#dcfce7;color:#15803d}.rate{background:#e0f2fe;color:#0369a1}
-.hero{width:155px;height:155px;object-fit:contain;margin:8px auto 12px;display:block}
-.dsm{width:36px;height:36px;object-fit:contain}.dmd{width:72px;height:72px;object-fit:contain}
-.ach{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:12px}
-.ai{background:#fefce8;border:1.5px solid #d6d3d1;border-radius:10px;padding:6px;font-size:11px;text-align:center;display:flex;flex-direction:column;align-items:center}
-.ai.on{background:#dcfce7;border-color:#16a34a;color:#15803d;font-weight:700}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media(max-width:440px){.grid{grid-template-columns:1fr}}
-.mc,.box{background:#fefce8;border:1.5px solid #eab308;border-radius:12px;padding:12px;margin-bottom:10px}
-.mc{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:0}
-.frame{background:#fff;border:3px solid #ca8a04;border-radius:14px;padding:8px;margin-bottom:8px;box-shadow:0 4px 10px rgba(0,0,0,.08)}
-.frame img,.cimg{width:100%;max-height:195px;object-fit:contain;border-radius:8px;display:block;margin:0 auto}
-.tabs{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
-.tb{flex:1;min-width:75px;padding:8px 5px;border-radius:10px;border:none;background:#fde047;font-weight:700;font-size:12px;cursor:pointer}
-.tb.act{background:#1c1917;color:#facc15}
-input,select{width:100%;padding:9px;border-radius:10px;border:1.5px solid #ca8a04;background:#fff;font-size:14px;font-weight:600;margin:4px 0 8px}
-.chat{height:220px;overflow-y:auto;background:#fef9c3;border:1.5px solid #eab308;border-radius:10px;padding:10px;margin-bottom:8px;display:flex;flex-direction:column;gap:8px}
-.bub{padding:8px 12px;border-radius:12px;font-size:13.5px;max-width:85%;white-space:pre-line}
-.bot{background:#fde047;align-self:flex-start}.usr{background:#1c1917;color:#facc15;align-self:flex-end}
-</style></head><body><div class="card">
-<div id="s-splash" style="text-align:center;padding:8px 4px">
-<h1 style="font-size:30px;font-weight:900">GIFT <span style="color:#d97706">FLIP PRO</span></h1>
-<img src="AnimatedSticker0-50-ezgif.com-tgs-to-gif-converter.gif" class="hero">
-<p style="font-size:15px;font-weight:700;color:#44403c;margin-bottom:14px">Вас приветствует GIFT FLIP PRO! Умный анализатор Telegram NFT-подарков и ИИ-помощник флипера. Давайте начнём!</p>
-<button class="btn dark" onclick="go('menu')">🦆 ПОГНАЛИ ФЛИПАТЬ!</button>
-<button class="btn grn" onclick="go('pro')">💎 АКТИВИРОВАТЬ PRO</button></div>
-
-<div id="s-menu" class="hide"><div class="bar"><button class="btn sm dark" onclick="go('splash')">◀ Заставка</button><span id="rnk" class="bdg">🐣 НОВИЧОК</span></div>
-<div class="ach">
-<div id="a-easy" class="ai"><img src="AnimatedSticker-ezgif.com-tgs-to-gif-converter (4).gif" class="dsm"><span>🔒 База освоилась</span></div>
-<div id="a-medium" class="ai"><img src="AnimatedSticker-ezgif.com-tgs-to-gif-converter (4).gif" class="dsm"><span>🔒 Охотник флора</span></div>
-<div id="a-hard" class="ai"><img src="AnimatedSticker-ezgif.com-tgs-to-gif-converter (4).gif" class="dsm"><span>🔒 Бог Флипа</span></div>
-</div><div class="grid">
-<div class="mc"><div><b>📘 Энциклопедия</b><p style="font-size:12px;margin:4px 0">Флор, монохром и номера</p><button class="btn sm dark" onclick="go('guide')">Открыть ➔</button></div><img src="AnimatedSticker-ezgif.com-tgs-to-gif-converter (5).gif" class="dmd"></div>
-<div class="mc"><div><b>🔥 Примеры сделок</b><p style="font-size:12px;margin:4px 0">Liberty, Snoop и Vice Cream</p><button class="btn sm amb" onclick="go('cases')">Открыть ➔</button></div><img src="AnimatedSticker-ezgif.com-tgs-to-gif-converter (7).gif" class="dmd"></div>
-<div class="mc"><div><b>🎓 Экзамен</b><p style="font-size:12px;margin:4px 0">3 уровня сложности</p><button class="btn sm pur" onclick="go('test')">Открыть ➔</button></div><img src="AnimatedSticker-ezgif.com-tgs-to-gif-converter (4).gif" class="dmd"></div>
-<div class="mc"><div><b>💎 PRO Режим</b><p style="font-size:12px;margin:4px 0">Сканер, Битва, Калькулятор и ИИ</p><button class="btn sm grn" onclick="go('pro')">Открыть ➔</button></div><img src="AnimatedSticker-ezgif.com-tgs-to-gif-converter (6).gif" class="dmd"></div>
-</div></div>
-
-<div id="s-guide" class="hide"><div class="bar"><button class="btn sm dark" onclick="go('menu')">◀ Меню</button><b>📘 Энциклопедия флипа</b></div>
-<div class="box"><h4>💎 Флор и Ликвидность</h4><p>Покупай подарки с сильной фишкой (монохром, редкий номер, фон Onyx) по цене обычного флора и продавай с наценкой +35..120%.</p></div>
-<div class="box"><h4>🎨 Иерархия Монохрома</h4><p>• Идеальный (+70%): фигурка и фон одного оттенка.<br>• Тональный (+40%): близкие оттенки.<br>• Неликвид (0%): разные несочетаемые цвета.</p></div>
-<div class="box"><h4>🔢 Номера</h4><p>• #1–#99: x2–x5 к флору.<br>• Повторы (#777): +60%.<br>• Зеркальные (#1221): +35%.<br>• Серии (#99 953): +20%.</p></div></div>
-
-<div id="s-cases" class="hide"><div class="bar"><button class="btn sm dark" onclick="go('menu')">◀ Меню</button><b>🔥 Примеры сделок</b></div>
-<div class="box"><div class="frame"><img src="photo_3_2026-11-24_17-47-53.jpg"></div><h4>Liberty Figure — Монохром</h4><span class="bdg pro">✅ БЕРЁМ (+70%)</span><p style="margin-top:6px">Красная статуя на красном фоне — чистый монохром.</p></div>
-<div class="box"><div class="frame"><img src="photo_1_2026-11-24_17-47-53.jpg"></div><h4>Snoop Cigar #99 953</h4><span class="bdg rate">✅ БЕРЁМ (+20%)</span><p style="margin-top:6px">Начало на три девятки (#99 953) + хайповая коллекция.</p></div>
-<div class="box"><div class="frame"><img src="photo_2_2026-11-24_17-47-53.jpg"></div><h4>Vice Cream #343 812</h4><span class="bdg" style="background:#ffe4e6;color:#be123c">❌ НЕ БЕРЁМ (0%)</span><p style="margin-top:6px">Нет монохрома + огромный случайный номер.</p></div></div>
-<div id="s-test" class="hide"><div class="bar"><button class="btn sm dark" onclick="go('menu')">◀ Меню</button><b>🎓 Экзамен флипера</b></div><div id="qa"></div></div>
-
-<div id="s-pro" class="hide"><div class="bar"><button class="btn sm dark" onclick="go('menu')">◀ Меню</button><span id="ps" class="bdg">🔒 FREE</span></div>
-<div id="plock" class="box" style="text-align:center"><img src="AnimatedSticker-ezgif.com-tgs-to-gif-converter (1).gif" class="hero" style="width:125px;height:125px">
-<p style="color:#be123c;font-weight:700;margin-bottom:6px">⚠️ НИКОМУ НЕ ПЕРЕДАВАЙ СВОЙ СЕКРЕТНЫЙ КОД!</p>
-<input id="pkey" placeholder="Введи секретный код..." style="text-align:center"><div id="perr" style="color:#be123c;font-weight:700"></div>
-<button class="btn grn" onclick="unl()">🔓 Активировать PRO</button></div>
-
-<div id="ppan" class="hide"><div class="tabs">
-<button class="tb act" onclick="pt('sc',this)">🔍 Сканер</button>
-<button class="tb" onclick="pt('cl',this)">💰 Калькулятор</button>
-<button class="tb" onclick="pt('bt',this)">⚖️ Битва</button>
-<button class="tb" onclick="pt('gm',this)">🎮 Игра</button>
-<button class="tb" onclick="pt('dr',this)">📊 Дневник</button>
-<button class="tb" onclick="pt('ai',this)">🤖 ИИ</button></div>
-
-<div id="p-sc" class="box"><h4>🔍 Сканер подарка</h4><input id="snum" placeholder="Номер (#777)"><input type="file" accept="image/*" onchange="scan(event)"><img id="sprev" class="cimg hide"><div id="sres"></div><canvas id="scv" class="hide"></canvas></div>
-
-<div id="p-cl" class="box hide"><h4>💰 Калькулятор цены продажи</h4>
-<label style="font-size:12px;font-weight:700">Цена покупки:</label>
-<div style="display:flex;gap:6px"><input id="cbuy" type="number" value="10" step="0.1"><select id="ccur"><option value="TON">TON</option><option value="Stars">Stars</option></select></div>
-<label style="font-size:12px;font-weight:700">Желаемая наценка (%):</label>
-<input id="cpct" type="number" value="50" step="5">
-<label style="font-size:12px;font-weight:700">Площадка (комиссия):</label>
-<select id="cmkt"><option value="0.05">Tonnel (5%)</option><option value="0.05">Portals (5%)</option><option value="0.10">Fragment (10%)</option></select>
-<button class="btn grn" onclick="calc()">🧮 Рассчитать прибыль</button>
-<div id="cout" style="margin-top:10px;font-size:14px;line-height:1.5"></div></div>
-
-<div id="p-bt" class="box hide"><h4>⚖️ Битва двух лотов</h4>
-<input type="file" accept="image/*" onchange="lbt(1,event)"><input id="bn1" placeholder="Номер лота №1"><hr style="margin:6px 0">
-<input type="file" accept="image/*" onchange="lbt(2,event)"><input id="bn2" placeholder="Номер лота №2">
-<button class="btn grn" onclick="cmp()">⚡ Сравнить</button><div id="bv" style="margin-top:8px;font-weight:800"></div></div>
-
-<div id="p-gm" class="box hide"><div id="ga"></div></div>
-<div id="p-dr" class="box hide"><div id="ds" style="font-weight:700;margin-bottom:6px"></div><input id="dn" value="Snoop Cigar #777"><div style="display:flex;gap:6px"><input id="db" type="number" value="10"><input id="dse" type="number" value="15"></div><button class="btn sm grn" style="width:100%" onclick="addD()">➕ Записать</button><div id="dl" style="margin-top:8px"></div></div>
-<div id="p-ai" class="box hide"><div id="cb" class="chat"><div class="bub bot">Привет! Спроси про баланс, маркеты или напиши номер подарка (777)!</div></div><div style="display:flex;gap:6px"><input id="ci" style="margin:0" onkeydown="if(event.key==='Enter')sai()"><button class="btn sm grn" onclick="sai()">➔</button></div></div>
-</div></div></div>
-<div id="s-test" class="hide"><div class="bar"><button class="btn sm dark" onclick="go('menu')">◀ Меню</button><b>🎓 Экзамен флипера</b></div><div id="qa"></div></div>
-
-<div id="s-pro" class="hide"><div class="bar"><button class="btn sm dark" onclick="go('menu')">◀ Меню</button><span id="ps" class="bdg">🔒 FREE</span></div>
-<div id="plock" class="box" style="text-align:center"><img src="AnimatedSticker-ezgif.com-tgs-to-gif-converter (1).gif" class="hero" style="width:125px;height:125px">
-<p style="color:#be123c;font-weight:700;margin-bottom:6px">⚠️ НИКОМУ НЕ ПЕРЕДАВАЙ СВОЙ СЕКРЕТНЫЙ КОД!</p>
-<input id="pkey" placeholder="Введи секретный код..." style="text-align:center"><div id="perr" style="color:#be123c;font-weight:700"></div>
-<button class="btn grn" onclick="unl()">🔓 Активировать PRO</button></div>
-
-<div id="ppan" class="hide"><div class="tabs">
-<button class="tb act" onclick="pt('sc',this)">🔍 Сканер</button>
-<button class="tb" onclick="pt('cl',this)">💰 Калькулятор</button>
-<button class="tb" onclick="pt('bt',this)">⚖️ Битва</button>
-<button class="tb" onclick="pt('gm',this)">🎮 Игра</button>
-<button class="tb" onclick="pt('dr',this)">📊 Дневник</button>
-<button class="tb" onclick="pt('ai',this)">🤖 ИИ</button></div>
-
-<div id="p-sc" class="box"><h4>🔍 Сканер подарка</h4><input id="snum" placeholder="Номер (#777)"><input type="file" accept="image/*" onchange="scan(event)"><img id="sprev" class="cimg hide"><div id="sres"></div><canvas id="scv" class="hide"></canvas></div>
-
-<div id="p-cl" class="box hide"><h4>💰 Калькулятор цены продажи</h4>
-<label style="font-size:12px;font-weight:700">Цена покупки:</label>
-<div style="display:flex;gap:6px"><input id="cbuy" type="number" value="10" step="0.1"><select id="ccur"><option value="TON">TON</option><option value="Stars">Stars</option></select></div>
-<label style="font-size:12px;font-weight:700">Желаемая наценка (%):</label>
-<input id="cpct" type="number" value="50" step="5">
-<label style="font-size:12px;font-weight:700">Площадка (комиссия):</label>
-<select id="cmkt"><option value="0.05">Tonnel (5%)</option><option value="0.05">Portals (5%)</option><option value="0.10">Fragment (10%)</option></select>
-<button class="btn grn" onclick="calc()">🧮 Рассчитать прибыль</button>
-<div id="cout" style="margin-top:10px;font-size:14px;line-height:1.5"></div></div>
-
-<div id="p-bt" class="box hide"><h4>⚖️ Битва двух лотов</h4>
-<input type="file" accept="image/*" onchange="lbt(1,event)"><input id="bn1" placeholder="Номер лота №1"><hr style="margin:6px 0">
-<input type="file" accept="image/*" onchange="lbt(2,event)"><input id="bn2" placeholder="Номер лота №2">
-<button class="btn grn" onclick="cmp()">⚡ Сравнить</button><div id="bv" style="margin-top:8px;font-weight:800"></div></div>
-
-<div id="p-gm" class="box hide"><div id="ga"></div></div>
-<div id="p-dr" class="box hide"><div id="ds" style="font-weight:700;margin-bottom:6px"></div><input id="dn" value="Snoop Cigar #777"><div style="display:flex;gap:6px"><input id="db" type="number" value="10"><input id="dse" type="number" value="15"></div><button class="btn sm grn" style="width:100%" onclick="addD()">➕ Записать</button><div id="dl" style="margin-top:8px"></div></div>
-<div id="p-ai" class="box hide"><div id="cb" class="chat"><div class="bub bot">Привет! Спроси про баланс, маркеты или напиши номер подарка (777)!</div></div><div style="display:flex;gap:6px"><input id="ci" style="margin:0" onkeydown="if(event.key==='Enter')sai()"><button class="btn sm grn" onclick="sai()">➔</button></div></div>
-</div></div></div>
+<script>
+if(window.Telegram?.WebApp){Telegram.WebApp.ready();Telegram.WebApp.expand();}
+let st={easy:0,medium:0,hard:0,deals:[],pro:0};
+try{let s=JSON.parse(localStorage.getItem("gf_s"));if(s)st=s;}catch(e){}
+function sv(){try{localStorage.setItem("gf_s",JSON.stringify(st));}catch(e){}upd();}
+function upd(){
+  if(st.easy){let e=document.getElementById("a-easy");if(e){e.classList.add("on");e.querySelector("img").src="AnimatedSticker-ezgif.com-tgs-to-gif-converter (3).gif";e.querySelector("span").textContent="✅ База освоилась";}}
+  if(st.medium){let e=document.getElementById("a-medium");if(e){e.classList.add("on");e.querySelector("img").src="AnimatedSticker-ezgif.com-tgs-to-gif-converter (6).gif";e.querySelector("span").textContent="✅ Охотник флора";}}
+  if(st.hard){let e=document.getElementById("a-hard");if(e){e.classList.add("on");e.querySelector("img").src="AnimatedSticker50-ezgif.com-tgs-to-gif-converter.gif";e.querySelector("span").textContent="✅ Бог Флипа";}}
+  let r=document.getElementById("rnk");if(r)r.textContent=st.hard?"👑 БОГ ФЛИПА":(st.medium?"🔥 МАСТЕР":(st.easy?"🟢 УЧЕНИК":"🐣 НОВИЧОК"));
+  if(st.pro){document.getElementById("ps").textContent="💎 PRO";document.getElementById("ps").className="bdg pro";document.getElementById("plock").classList.add("hide");document.getElementById("ppan").classList.remove("hide");}
+}
+function go(n){["splash","menu","guide","cases","test","pro"].forEach(s=>{let e=document.getElementById("s-"+s);if(e)e.classList.add("hide");});let t=document.getElementById("s-"+n);if(t)t.classList.remove("hide");upd();if(n==="test")qm();if(n==="pro"&&st.pro){rdr();gmm();}}
+function unl(){if(document.getElementById("pkey").value.trim()==="FLIP777"){st.pro=1;sv();rdr();gmm();}else document.getElementById("perr").textContent="❌ Неверный код!";}
+function pt(t,b){document.querySelectorAll(".tb").forEach(x=>x.classList.remove("act"));b.classList.add("act");["sc","cl","bt","gm","dr","ai"].forEach(x=>{let e=document.getElementById("p-"+x);if(e)e.classList.add("hide");});document.getElementById("p-"+t).classList.remove("hide");}
+function nb(s){let d=(s||"").replace(/\D/g,"");if(!d)return{b:0,n:"без номера"};let v=parseInt(d,10);if(v<=99)return{b:80,n:"топ #"+v};if(new Set(d).size===1)return{b:60,n:"повтор #"+d};if(d===d.split("").reverse().join("")&&d.length>=3)return{b:35,n:"зеркало #"+d};if(["777","888","999","111","000"].some(p=>d.startsWith(p)))return{b:20,n:"серия #"+d};return v%100===0?{b:25,n:"круглый #"+d}:{b:0,n:"обычный #"+d};}
+function hsv(r,g,b){r/=255;g/=255;b/=255;let mx=Math.max(r,g,b),mn=Math.min(r,g,b),df=mx-mn,h=0;if(df){if(mx===r)h=(60*((g-b)/df)+360)%360;else if(mx===g)h=(60*((b-r)/df)+120)%360;else h=(60*((r-g)/df)+240)%360;}return{h,s:mx?df/mx*100:0,v:mx*100};}
+function anl(im,ns){let c=document.getElementById("scv"),x=c.getContext("2d");c.width=im.width;c.height=im.height;x.drawImage(im,0,0);let d=x.getImageData(0,0,im.width,im.height).data,br=0,bg=0,bb=0,cn=0;for(let i=Math.floor(im.width*.1);i<im.width*.9;i+=5)for(let y of[Math.floor(im.height*.1),Math.floor(im.height*.45)]){let k=(y*im.width+i)*4;br+=d[k];bg+=d[k+1];bb+=d[k+2];cn++;}br/=cn;bg/=cn;bb/=cn;let bgH=hsv(br,bg,bb),m=0,o=0;for(let i=Math.floor(im.width*.3);i<im.width*.7;i+=3)for(let y=Math.floor(im.height*.16);y<im.height*.65;y+=3){let k=(y*im.width+i)*4,r=d[k],g=d[k+1],b=d[k+2];if(Math.hypot(r-br,g-bg,b-bb)>28){o++;let pH=hsv(r,g,b),hd=Math.min(Math.abs(pH.h-bgH.h),360-Math.abs(pH.h-bgH.h));if((bgH.s>18&&pH.s>18&&hd<=24&&Math.abs(pH.s-bgH.s)<=45)||(bgH.s<=18&&pH.s<=22&&Math.abs(pH.v-bgH.v)<=45))m++;}}let sc=o?Math.round(m/o*100):0,cb=sc>=68?70:(sc>=45?40:0),num=nb(ns);return{tot:cb+num.b,sc,cb,n:num.b,nn:num.n};}
+function scan(e){let f=e.target.files.item(0);if(!f)return;let r=new FileReader();r.onload=ev=>{let im=new Image();im.onload=()=>{let p=document.getElementById("sprev");p.src=ev.target.result;p.classList.remove("hide");let a=anl(im,document.getElementById("snum").value);document.getElementById("cpct").value=a.tot;let dk=a.tot>=50?"AnimatedSticker50-ezgif.com-tgs-to-gif-converter.gif":(a.tot>0?"AnimatedSticker-ezgif.com-tgs-to-gif-converter (3).gif":"AnimatedSticker-ezgif.com-tgs-to-gif-converter (2).gif");document.getElementById("sres").innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center"><div><b>Рекомендуемая наценка: +${a.tot}%</b><br>Совпадение цвета: ${a.sc}% (+${a.cb}%)<br>Номер (${a.nn}): +${a.n}%</div><img src="${dk}" class="dmd"></div>`;};im.src=ev.target.result;};r.readAsDataURL(f);}
+function calc(){let b=parseFloat(document.getElementById("cbuy").value)||0,p=parseFloat(document.getElementById("cpct").value)||0,f=parseFloat(document.getElementById("cmkt").value),cur=document.getElementById("ccur").value;if(b<=0)return;let z=b/(1-f),s=(b*(1+p/100))/(1-f),pr=s*(1-f)-b;document.getElementById("cout").innerHTML=`<b>Выставлять за:</b> ${s.toFixed(2)} ${cur}<br><b>Чистая прибыль:</b> +${pr.toFixed(2)} ${cur} (+${Math.round(pr/b*100)}%)<br><span style="color:#57534e">Минимум в ноль: ${z.toFixed(2)} ${cur}</span>`;}
+let im1=null,im2=null;function lbt(i,e){let f=e.target.files.item(0);if(!f)return;let r=new FileReader();r.onload=ev=>{let im=new Image();im.onload=()=>{if(i===1)im1=im;else im2=im;};im.src=ev.target.result;};r.readAsDataURL(f);}
+function cmp(){if(!im1||!im2){document.getElementById("bv").textContent="❌ Загрузи оба скриншота!";return;}let r1=anl(im1,document.getElementById("bn1").value),r2=anl(im2,document.getElementById("bn2").value);document.getElementById("bv").textContent=r1.tot>=r2.tot?`🏆 Победил Лот №1 (+${r1.tot}% против +${r2.tot}%)`:`🏆 Победил Лот №2 (+${r2.tot}% против +${r1.tot}%)`;}
+const Q={easy:[{q:"1. Что такое «флор»?",o:["Мин. цена в коллекции","Макс. цена","Комиссия"],c:0},{q:"2. Идеальный монохром:",o:["Фигурка в цвет фона","Чёрно-белый","Номер #100"],c:0},{q:"3. Какой номер дороже?",o:["#777","#343 812","#84 129"],c:0},{q:"4. Главный маркет TG?",o:["Fragment","Avito","Steam"],c:0},{q:"5. Зеркальный номер?",o:["#1221","#1234","#9812"],c:0}],medium:[{q:"1. Liberty монохром у флора?",o:["Забираю (+70%)","Пропускаю","Жду"],c:0},{q:"2. Ценный фон без монохрома?",o:["Чёрный (Onyx)","Серый","Болотный"],c:0},{q:"3. Куда смотреть перед покупкой?",o:["Последние продажи","Самый дорогой лот","Дату"],c:0},{q:"4. Макс. доля банка в 1 лот?",o:["25–30%","100%","95%"],c:0},{q:"5. Первая сотня (#1–#99):",o:["x2–x5 к флору","Дешевле","Как обычный"],c:0}],hard:[{q:"1. Купил за 10 TON (10% комиссия). В ноль?",o:["11.11 TON","11.00 TON","10.50 TON"],c:0},{q:"2. Опасны первые 2 часа из-за:",o:["Пика FOMO и отката","Запрета передачи","Комиссии 80%"],c:0},{q:"3. Что такое снайпинг?",o:["Выкуп редкого лота по флору","Покупка дорогого","В долг"],c:0},{q:"4. Главный показатель флипера?",o:["Оборот и ROI","Куча неликвида","Один лот"],c:0},{q:"5. Топ-комбо атрибутов?",o:["#1–#9 + монохром/Onyx","#150000 + обычный","#500 в мёртвой"],c:0}]};
+let ql="easy",qi=0,qs=0;function qm(){document.getElementById("qa").innerHTML=`<div class="box"><b>🟢 Лёгкий</b><button class="btn sm grn" onclick="sq('easy')">Начать</button></div><div class="box"><b>🟡 Средний</b><button class="btn sm amb" onclick="sq('medium')">Начать</button></div><div class="box"><b>🔴 Сложный</b><button class="btn sm pur" onclick="sq('hard')">Начать</button></div>`;}
+function sq(l){ql=l;qi=0;qs=0;rq();}function rq(){let L=Q[ql];if(qi>=L.length){if(qs>=4){st[ql]=1;sv();}document.getElementById("qa").innerHTML=`<div class="box" style="text-align:center"><h3>Счёт: ${qs}/${L.length}</h3><p style="margin:6px 0">${qs>=4?"🏆 Ачивка открыта!":"Нужно 4+ балла"}</p><button class="btn dark" onclick="qm()">Назад</button></div>`;return;}let it=L.at(qi);document.getElementById("qa").innerHTML=`<div class="box"><b>${qi+1}/${L.length}: ${it.q}</b>${it.o.map((x,i)=>`<button class="btn dark" onclick="aq(${i},${it.c})">${x}</button>`).join("")}</div>`;}
+function aq(i,c){if(i===c)qs++;qi++;rq();}
+const LS=[{n:"Liberty Красный монохром",p:12,c:65},{n:"Vice Cream #343 812",p:8,c:0},{n:"Snoop Cigar Onyx",p:18,c:45},{n:"Signet Ring #777",p:22,c:80},{n:"Scared Cat обычный",p:9,c:-5}];
+let gb=50,gs=50,gi=0;function gmm(){document.getElementById("ga").innerHTML=`<h4>🎮 Симулятор закупки</h4><button class="btn grn" onclick="sg(20)">💎 20 TON</button><button class="btn amb" onclick="sg(50)">💎 50 TON</button>`;}
+function sg(b){gb=b;gs=b;gi=0;rgs();}function rgs(){if(gi>=LS.length){let d=gb-gs;document.getElementById("ga").innerHTML=`<h4>🏁 Итог: ${gb.toFixed(1)} TON (${d>=0?"+":""}${d.toFixed(1)} TON)</h4><button class="btn dark" onclick="gmm()">Ещё раз</button>`;return;}let it=LS.at(gi);document.getElementById("ga").innerHTML=`<b>Баланс: ${gb.toFixed(1)} TON</b><h4>${it.n} — ${it.p} TON</h4>${gb>=it.p?`<button class="btn grn" onclick="bl(${it.p},${it.c})">Купить</button>`:""}<button class="btn dark" onclick="gi++;rgs()">Пропустить</button>`;}
+function bl(p,c){gb=gb-p+p*(1+c/100);gi++;rgs();}
+function rdr(){let d=st.deals||[],t=d.reduce((s,x)=>s+(x.s-x.b),0);document.getElementById("ds").textContent=`Сделок: ${d.length} | Профит: ${t.toFixed(2)} TON`;document.getElementById("dl").innerHTML=d.map((x,i)=>`<div style="display:flex;justify-content:space-between;padding:4px 0"><span>${x.n}</span><b>${(x.s-x.b).toFixed(2)} TON <button onclick="st.deals.splice(${i},1);sv();rdr()">✕</button></b></div>`).join("");}
+function addD(){let n=document.getElementById("dn").value,b=parseFloat(document.getElementById("db").value),s=parseFloat(document.getElementById("dse").value);if(!isNaN(b)&&!isNaN(s)){st.deals.unshift({n,b,s});sv();rdr();}}
+function sai(){let i=document.getElementById("ci"),q=i.value.trim();if(!q)return;i.value="";let b=document.getElementById("cb");b.innerHTML+=`<div class="bub usr">${q}</div>`;let l=q.toLowerCase(),d=l.replace(/\D/g,""),a="Спроси про баланс, маркеты или напиши номер (777)!";if(l.includes("баланс"))a="Оптимальный старт: 25–70 TON. Не трать больше 30% на 1 лот!";else if(l.includes("маркет"))a="Топ-3: Tonnel Relayer, Portals (снайпинг) и Fragment (топ-номера).";else if(d){let res=nb(d);a=res.b>0?`Номер #${d} (${res.n}): +${res.b}% к флору!`:`Номер #${d}: обычный (0%).`;}b.innerHTML+=`<div class="bub bot">${a}</div>`;b.scrollTop=b.scrollHeight;}
+upd();
+</script>
+</body>
+</html>
