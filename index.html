@@ -22,10 +22,10 @@ input,select,textarea{width:100%;padding:9px;border-radius:10px;border:1.5px sol
 <div id="s-splash" style="text-align:center;padding:8px 4px"><h1 style="font-size:30px;font-weight:900">GIFT <span style="color:#d97706">FLIP PRO</span></h1><img src="AnimatedSticker0-50-ezgif.com-tgs-to-gif-converter.gif" class="hero"><p style="font-size:15px;font-weight:700;color:#44403c;margin-bottom:14px">Вас приветствует GIFT FLIP PRO! Умный анализатор Telegram NFT-подарков и ИИ-помощник флипера. Давайте начнём!</p><button class="btn dark" onclick="go('menu')">🦆 ПОГНАЛИ ФЛИПАТЬ!</button><button class="btn grn" onclick="go('pro')">💎 АКТИВИРОВАТЬ PRO</button><button class="btn amb" onclick="go('prof')">👤 ПРОФИЛЬ</button></div>
 
 <div id="s-prof" class="hide"><div class="bar"><button class="btn sm dark" onclick="go('splash')">◀ Заставка</button><b>👤 Профиль флипера</b><span id="p-id" class="bdg rate">ID #100</span></div>
-<div class="box" style="display:flex;align-items:center;gap:12px"><img id="p-ava" src="AnimatedSticker0-50-ezgif.com-tgs-to-gif-converter.gif" style="width:64px;height:64px;border-radius:50%;border:2.5px solid #ca8a04;object-fit:cover;background:#fff"><div style="flex:1"><div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap"><span id="p-name" style="font-size:17px;font-weight:900">@fliper</span></div><div style="display:flex;align-items:center;gap:6px;margin-top:4px"><img src="AnimatedSticker-ezgif.com-tgs-to-gif-converter (5).gif" style="width:32px;height:32px;object-fit:contain"><span id="p-rank" class="bdg">🐣 НОВИЧОК</span></div></div></div>
+<div class="box" style="display:flex;align-items:center;gap:12px"><div style="width:64px;height:64px;border-radius:50%;border:2.5px solid #ca8a04;overflow:hidden;background:#1c1917;color:#facc15;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:900;flex-shrink:0"><img id="p-ava" style="width:100%;height:100%;object-fit:cover;display:none"><span id="p-init">🦆</span></div><div style="flex:1"><div id="p-name" style="font-size:17px;font-weight:900">@fliper</div><div id="p-sub" style="font-size:12px;color:#57534e;font-weight:600">Telegram Флипер</div><div style="display:flex;align-items:center;gap:6px;margin-top:4px"><img src="AnimatedSticker-ezgif.com-tgs-to-gif-converter (5).gif" style="width:30px;height:30px;object-fit:contain"><span id="p-rank" class="bdg">🐣 НОВИЧОК</span></div></div></div>
 <div class="box" style="text-align:center"><div style="display:flex;justify-content:center;align-items:center;gap:10px"><img id="st-img-p" src="ice-duck.gif.gif" style="width:62px;height:62px;object-fit:contain"><div><div style="font-size:12px;font-weight:700;color:#57534e">Огонёк флипера</div><div id="st-num-p" class="ice-txt" style="font-size:24px;font-weight:900">0 дней</div></div></div><button id="st-btn" class="btn amb" onclick="extStreak()">🔥 Продлить огонёк</button><div id="st-tip" class="box hide" style="margin-top:8px;background:#fef08a;font-weight:700;font-size:13px"></div></div>
 <div class="box"><h4>🏅 Выбор звания (из открытых ачивок)</h4><div id="rank-list" style="margin-top:6px"></div></div>
-<div class="ref-card"><div style="display:flex;justify-content:space-between;align-items:center"><b>🤝 Пригласи друга во флип!</b><span id="ref-cnt" class="bdg pro">👥 Друзей: 0</span></div><p style="font-size:12.5px;margin:4px 0 8px;color:#fef9c3">Делись аналитикой подарков и флипайте вместе! За каждого друга по твоей ссылке начисляется +1 друг в профиль.</p><div id="ref-link" style="background:#292524;padding:7px;border-radius:8px;font-size:12px;word-break:break-all;margin-bottom:6px"></div><button class="btn grn sm" style="width:100%" onclick="shareRef()">📤 Поделиться с другом</button></div></div>
+<div class="ref-card"><div style="display:flex;justify-content:space-between;align-items:center"><b>🤝 Пригласи друга во флип!</b><span id="ref-cnt" class="bdg pro">👥 Друзей: 0</span></div><p style="font-size:12.5px;margin:4px 0 8px;color:#fef9c3">Делись аналитикой подарков и флипайте вместе! За каждого друга по твоей ссылке начисляется +1 друг в профиль.</p><div id="ref-link" style="background:#292524;padding:7px;border-radius:8px;font-size:12px;word-break:break-all;margin-bottom:6px"></div><a id="ref-share-a" target="_blank" class="btn grn sm" style="display:block;width:100%;text-align:center;text-decoration:none" onclick="copyRef()">📤 Поделиться с другом</a><div id="ref-copied" class="hide" style="text-align:center;font-size:12px;color:#86efac;font-weight:700;margin-top:5px">✅ Ссылка скопирована в буфер обмена!</div></div></div>
 <div id="s-menu" class="hide"><div class="bar"><button class="btn sm dark" onclick="go('splash')">◀ Заставка</button><div style="display:flex;align-items:center;gap:6px"><div class="streak-pill" onclick="go('prof')"><img id="st-img-m" src="ice-duck.gif.gif" style="width:26px;height:26px;object-fit:contain"><span id="st-num-m" class="ice-txt">0</span></div><div style="display:flex;align-items:center;gap:4px;background:#fef08a;padding:3px 8px;border-radius:8px"><img src="AnimatedSticker-ezgif.com-tgs-to-gif-converter (5).gif" style="width:24px;height:24px;object-fit:contain"><span id="rnk" style="font-size:12px;font-weight:800;color:#854d0e">🐣 НОВИЧОК</span></div></div></div><div class="ach"><div id="a-easy" class="ai"><img src="AnimatedSticker-ezgif.com-tgs-to-gif-converter (4).gif" class="dsm"><span>🔒 База освоилась</span></div><div id="a-medium" class="ai"><img src="AnimatedSticker-ezgif.com-tgs-to-gif-converter (4).gif" class="dsm"><span>🔒 Охотник флора</span></div><div id="a-hard" class="ai"><img src="AnimatedSticker-ezgif.com-tgs-to-gif-converter (4).gif" class="dsm"><span>🔒 Бог Флипа</span></div></div><div class="grid"><div class="mc"><div><b>📘 Энциклопедия</b><p style="font-size:12px;margin:4px 0">Флор, монохром и номера</p><button class="btn sm dark" onclick="go('guide')">Открыть ➔</button></div><img src="AnimatedSticker-ezgif.com-tgs-to-gif-converter (5).gif" class="dmd"></div><div class="mc"><div><b>🔥 Примеры сделок</b><p style="font-size:12px;margin:4px 0">Liberty, Snoop и Vice Cream</p><button class="btn sm amb" onclick="go('cases')">Открыть ➔</button></div><img src="AnimatedSticker-ezgif.com-tgs-to-gif-converter (3).gif" class="dmd"></div><div class="mc"><div><b>🎓 Экзамен</b><p style="font-size:12px;margin:4px 0">3 уровня по 10 вопросов</p><button class="btn sm pur" onclick="go('test')">Открыть ➔</button></div><img src="AnimatedSticker-ezgif.com-tgs-to-gif-converter (4).gif" class="dmd"></div><div class="mc"><div><b>💎 PRO Режим</b><p style="font-size:12px;margin:4px 0">Сканер, Битва, Игра и Посты</p><button class="btn sm grn" onclick="go('pro')">Открыть ➔</button></div><img src="AnimatedSticker50-ezgif.com-tgs-to-gif-converter.gif" class="dmd"></div></div></div>
 
 <div id="s-guide" class="hide"><div class="bar"><button class="btn sm dark" onclick="go('menu')">◀ Меню</button><b>📘 Энциклопедия флипа</b></div><div class="box"><h4>💎 Флор и Ликвидность</h4><p>Покупай подарки с сильной фишкой (монохром, редкий номер, фон Onyx) по цене обычного флора и продавай с наценкой +35..120%.</p></div><div class="box"><h4>🎨 Иерархия Монохрома</h4><p>• Идеальный (+70%): фигурка и фон одного оттенка.<br>• Тональный (+40%): близкие оттенки.<br>• Неликвид (0%): разные несочетаемые цвета.</p></div><div class="box"><h4>🔢 Номера</h4><p>• #1–#99: x2–x5 к флору.<br>• Повторы (#777): +60%.<br>• Зеркальные (#1221): +35%.<br>• Серии (#99 953): +20%.</p></div></div>
@@ -47,37 +47,55 @@ input,select,textarea{width:100%;padding:9px;border-radius:10px;border:1.5px sol
 </div></div></div>
 <script>
 const tg=window.Telegram&&window.Telegram.WebApp;if(tg){tg.ready();tg.expand();}
+function parseTg(){
+  let u=tg&&tg.initDataUnsafe&&tg.initDataUnsafe.user;
+  let sp=(tg&&tg.initDataUnsafe&&tg.initDataUnsafe.start_param)||"";
+  try{
+    let raw=(tg&&tg.initData)||new URLSearchParams(location.hash.slice(1)).get("tgWebAppData")||"";
+    if(raw){let p=new URLSearchParams(raw);if(!u&&p.get("user"))u=JSON.parse(p.get("user"));if(!sp&&p.get("start_param"))sp=p.get("start_param");}
+  }catch(e){}
+  if(!sp)sp=new URLSearchParams(location.search).get("start")||"";
+  return{u:u,sp:sp};
+}
+let tgInfo=parseTg(),uObj=tgInfo.u;
+let sKey=uObj&&uObj.id?("gf_u_"+uObj.id):"gf_u_guest";
 let st={easy:0,medium:0,hard:0,deals:[],pro:0,rank:"🐣 НОВИЧОК",streak:0,lastDay:"",uid:0,refs:0,refBy:""};
-try{let s=JSON.parse(localStorage.getItem("gf_s"));if(s)st=Object.assign(st,s);}catch(e){}
+try{let s=JSON.parse(localStorage.getItem(sKey));if(s)st=Object.assign(st,s);}catch(e){}
 const TIPS=["💡 Покупай подарки с чистым монохромом у самого флора — они уходят быстрее всего!","💡 Не вкладывай больше 25–30% банка в один лот, даже если он кажется идеальным.","💡 Чёрный фон (Onyx) даёт наценку +40..80% даже без совпадения цвета фигурки.","💡 Первая сотня номеров (#1–#99) всегда стоит в 2–5 раз дороже обычного флора.","💡 Перед покупкой обязательно проверяй историю последних продаж, а не только витрину.","💡 Избегай покупок в первые 1–2 часа после выхода апгрейда — это пик FOMO."];
 function todayStr(){return new Date().toISOString().slice(0,10);}
 function yestStr(){let d=new Date();d.setDate(d.getDate()-1);return d.toISOString().slice(0,10);}
-function sv(){try{localStorage.setItem("gf_s",JSON.stringify(st));}catch(e){}upd();}
+function sv(){try{localStorage.setItem(sKey,JSON.stringify(st));}catch(e){}upd();}
 async function initProf(){
-  let u=tg&&tg.initDataUnsafe&&tg.initDataUnsafe.user;
+  let inf=parseTg(),u=inf.u||uObj;
   if(u){
-    let nm=u.username?("@"+u.username):([u.first_name,u.last_name].filter(Boolean).join(" ")||"Флипер");
-    document.getElementById("p-name").textContent=nm;
-    if(u.photo_url)document.getElementById("p-ava").src=u.photo_url;
+    let full=[u.first_name,u.last_name].filter(Boolean).join(" ")||"Флипер";
+    let un=u.username?("@"+u.username):full;
+    document.getElementById("p-name").textContent=un;
+    document.getElementById("p-sub").textContent=u.username?full:"Telegram ID: "+u.id;
+    document.getElementById("p-init").textContent=(full.slice(0,1)||"🦆").toUpperCase();
+    if(u.photo_url){let im=document.getElementById("p-ava");im.src=u.photo_url;im.style.display="block";document.getElementById("p-init").style.display="none";}
   }
   if(!st.uid){
-    try{let r=await fetch("https://counterapi.dev");let j=await r.json();st.uid=99+(j.count||1);}catch(e){st.uid=100;}
+    try{let r=await fetch("https://counterapi.dev");let j=await r.json();st.uid=99+(j.count||1);}
+    catch(e){let loc=parseInt(localStorage.getItem("gf_seq")||"99",10)+1;localStorage.setItem("gf_seq",String(loc));st.uid=loc;}
     sv();
   }
   let botUrl="https"+"://t.me/gift_flip_pro_duck_bot?start=ref_"+st.uid;
+  let shareTxt="🦆 Залетай в GIFT FLIP PRO — умный сканер Telegram NFT-подарков, тренажёр закупок и ИИ-помощник флипера!";
   document.getElementById("p-id").textContent="ID #"+st.uid;
   document.getElementById("ref-link").textContent=botUrl;
-  let sp=(tg&&tg.initDataUnsafe&&tg.initDataUnsafe.start_param)||new URLSearchParams(location.search).get("start")||"";
+  document.getElementById("ref-share-a").href="https"+"://t.me/share/url?url="+encodeURIComponent(botUrl)+"&text="+encodeURIComponent(shareTxt);
+  let sp=inf.sp;
   if(sp.startsWith("ref_")&&!st.refBy){
     let inv=sp.replace("ref_","");
     if(inv&&inv!==String(st.uid)){st.refBy=inv;sv();fetch("https://counterapi.dev_"+inv+"/up").catch(()=>{});}
   }
   try{let rr=await fetch("https://counterapi.dev_"+st.uid);let rj=await rr.json();if(rj&&typeof rj.count==="number"){st.refs=rj.count;sv();}}catch(e){}
 }
+function copyRef(){let lnk=document.getElementById("ref-link").textContent;if(lnk&&navigator.clipboard)navigator.clipboard.writeText(lnk);let c=document.getElementById("ref-copied");c.classList.remove("hide");setTimeout(()=>c.classList.add("hide"),3000);}
 function extStreak(){let t=todayStr();if(st.lastDay===t){showTip("🔥 Огонёк уже продлён сегодня! Возвращайся завтра.");return;}st.streak=(st.lastDay===yestStr())?(st.streak+1):1;st.lastDay=t;sv();showTip(TIPS.at(Math.floor(Math.random()*TIPS.length)));}
 let tipTmr=null;function showTip(txt){let el=document.getElementById("st-tip");el.textContent=txt;el.classList.remove("hide");clearTimeout(tipTmr);tipTmr=setTimeout(()=>el.classList.add("hide"),5000);}
 function setRank(r){st.rank=r;sv();}
-function shareRef(){let lnk=document.getElementById("ref-link").textContent,txt="🦆 Залетай в GIFT FLIP PRO — умный сканер Telegram NFT-подарков, тренажёр закупок и ИИ-помощник флипера!";if(tg&&tg.openTelegramLink)tg.openTelegramLink("https"+"://t.me/share/url?url="+encodeURIComponent(lnk)+"&text="+encodeURIComponent(txt));else if(navigator.clipboard)navigator.clipboard.writeText(txt+" "+lnk);}
 function upd(){
   if(st.lastDay&&st.lastDay!==todayStr()&&st.lastDay!==yestStr()){st.streak=0;}
   let on=st.lastDay===todayStr()&&st.streak>0;
