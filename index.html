@@ -27,7 +27,45 @@ input,select{width:100%;padding:9px;border-radius:10px;border:1.5px solid #ca8a0
 .bub{padding:8px 12px;border-radius:12px;font-size:13.5px;max-width:85%;white-space:pre-line}
 .bot{background:#fde047;align-self:flex-start}.usr{background:#1c1917;color:#facc15;align-self:flex-end}
 </style></head><body><div class="card">
-<script>
+<div id="s-test" class="hide"><div class="bar"><button class="btn sm dark" onclick="go('menu')">◀ Меню</button><b>🎓 Экзамен флипера</b></div><div id="qa"></div></div>
+
+<div id="s-pro" class="hide"><div class="bar"><button class="btn sm dark" onclick="go('menu')">◀ Меню</button><span id="ps" class="bdg">🔒 FREE</span></div>
+<div id="plock" class="box" style="text-align:center"><img src="AnimatedSticker-ezgif.com-tgs-to-gif-converter (1).gif" class="hero" style="width:125px;height:125px">
+<p style="color:#be123c;font-weight:700;margin-bottom:6px">⚠️ НИКОМУ НЕ ПЕРЕДАВАЙ СВОЙ СЕКРЕТНЫЙ КОД!</p>
+<input id="pkey" placeholder="Введи секретный код..." style="text-align:center"><div id="perr" style="color:#be123c;font-weight:700"></div>
+<button class="btn grn" onclick="unl()">🔓 Активировать PRO</button></div>
+
+<div id="ppan" class="hide"><div class="tabs">
+<button class="tb act" onclick="pt('sc',this)">🔍 Сканер</button>
+<button class="tb" onclick="pt('cl',this)">💰 Калькулятор</button>
+<button class="tb" onclick="pt('bt',this)">⚖️ Битва</button>
+<button class="tb" onclick="pt('gm',this)">🎮 Игра</button>
+<button class="tb" onclick="pt('dr',this)">📊 Дневник</button>
+<button class="tb" onclick="pt('ai',this)">🤖 ИИ</button></div>
+
+<div id="p-sc" class="box"><h4>🔍 Сканер подарка</h4><input id="snum" placeholder="Номер (#777)"><input type="file" accept="image/*" onchange="scan(event)"><img id="sprev" class="cimg hide"><div id="sres"></div><canvas id="scv" class="hide"></canvas></div>
+
+<div id="p-cl" class="box hide"><h4>💰 Калькулятор цены продажи</h4>
+<label style="font-size:12px;font-weight:700">Цена покупки:</label>
+<div style="display:flex;gap:6px"><input id="cbuy" type="number" value="10" step="0.1"><select id="ccur"><option value="TON">TON</option><option value="Stars">Stars</option></select></div>
+<label style="font-size:12px;font-weight:700">Желаемая наценка (%):</label>
+<input id="cpct" type="number" value="50" step="5">
+<label style="font-size:12px;font-weight:700">Площадка (комиссия):</label>
+<select id="cmkt"><option value="0.05">Tonnel (5%)</option><option value="0.05">Portals (5%)</option><option value="0.10">Fragment (10%)</option></select>
+<button class="btn grn" onclick="calc()">🧮 Рассчитать прибыль</button>
+<div id="cout" style="margin-top:10px;font-size:14px;line-height:1.5"></div></div>
+
+<div id="p-bt" class="box hide"><h4>⚖️ Битва двух лотов</h4>
+<input type="file" accept="image/*" onchange="lbt(1,event)"><input id="bn1" placeholder="Номер лота №1"><hr style="margin:6px 0">
+<input type="file" accept="image/*" onchange="lbt(2,event)"><input id="bn2" placeholder="Номер лота №2">
+<button class="btn grn" onclick="cmp()">⚡ Сравнить</button><div id="bv" style="margin-top:8px;font-weight:800"></div></div>
+
+<div id="p-gm" class="box hide"><div id="ga"></div></div>
+<div id="p-dr" class="box hide"><div id="ds" style="font-weight:700;margin-bottom:6px"></div><input id="dn" value="Snoop Cigar #777"><div style="display:flex;gap:6px"><input id="db" type="number" value="10"><input id="dse" type="number" value="15"></div><button class="btn sm grn" style="width:100%" onclick="addD()">➕ Записать</button><div id="dl" style="margin-top:8px"></div></div>
+<div id="p-ai" class="box hide"><div id="cb" class="chat"><div class="bub bot">Привет! Спроси про баланс, маркеты или напиши номер подарка (777)!</div></div><div style="display:flex;gap:6px"><input id="ci" style="margin:0" onkeydown="if(event.key==='Enter')sai()"><button class="btn sm grn" onclick="sai()">➔</button></div></div>
+</div></div></div>
+
+  <script>
 if(window.Telegram?.WebApp){Telegram.WebApp.ready();Telegram.WebApp.expand();}
 let st={easy:0,medium:0,hard:0,deals:[],pro:0};
 try{let s=JSON.parse(localStorage.getItem("gf_s"));if(s)st=s;}catch(e){}
