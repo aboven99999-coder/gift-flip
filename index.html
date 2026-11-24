@@ -1,3 +1,32 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GIFT FLIP PRO</title><script src="https://telegram.org"></script><style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Segoe UI,sans-serif}
+body{background:#facc15 radial-gradient(#eab308 18%,transparent 19%) 0 0/70px 70px;color:#1c1917;min-height:100vh;padding:12px;display:flex;justify-content:center}
+.card{width:100%;max-width:560px;background:#fef9c3;border:3px solid #ca8a04;border-radius:18px;padding:16px;box-shadow:0 10px 25px rgba(0,0,0,.12)}
+.hide{display:none!important}
+.btn{width:100%;padding:11px;border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;margin-top:8px}
+.dark{background:#1c1917;color:#facc15}.grn{background:#15803d;color:#fff}.amb{background:#d97706;color:#fff}.pur{background:#6d28d9;color:#fff}
+.sm{padding:7px 12px;font-size:13px;width:auto;margin:0}
+.bar{display:flex;justify-content:space-between;align-items:center;padding-bottom:10px;margin-bottom:12px;border-bottom:2px solid #eab308;gap:6px}
+.bdg{padding:4px 9px;border-radius:8px;font-size:12px;font-weight:700;background:#fef08a;color:#854d0e}
+.pro{background:#dcfce7;color:#15803d}.rate{background:#e0f2fe;color:#0369a1}
+.hero{width:155px;height:155px;object-fit:contain;margin:8px auto 12px;display:block}
+.dsm{width:36px;height:36px;object-fit:contain}.dmd{width:72px;height:72px;object-fit:contain}
+.ach{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:12px}
+.ai{background:#fefce8;border:1.5px solid #d6d3d1;border-radius:10px;padding:6px;font-size:11px;text-align:center;display:flex;flex-direction:column;align-items:center}
+.ai.on{background:#dcfce7;border-color:#16a34a;color:#15803d;font-weight:700}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media(max-width:440px){.grid{grid-template-columns:1fr}}
+.mc,.box{background:#fefce8;border:1.5px solid #eab308;border-radius:12px;padding:12px;margin-bottom:10px}
+.mc{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:0}
+.frame{background:#fff;border:3px solid #ca8a04;border-radius:14px;padding:8px;margin-bottom:8px;box-shadow:0 4px 10px rgba(0,0,0,.08)}
+.frame img,.cimg{width:100%;max-height:195px;object-fit:contain;border-radius:8px;display:block;margin:0 auto}
+.tabs{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
+.tb{flex:1;min-width:75px;padding:8px 5px;border-radius:10px;border:none;background:#fde047;font-weight:700;font-size:12px;cursor:pointer}
+.tb.act{background:#1c1917;color:#facc15}
+input,select{width:100%;padding:9px;border-radius:10px;border:1.5px solid #ca8a04;background:#fff;font-size:14px;font-weight:600;margin:4px 0 8px}
+.chat{height:220px;overflow-y:auto;background:#fef9c3;border:1.5px solid #eab308;border-radius:10px;padding:10px;margin-bottom:8px;display:flex;flex-direction:column;gap:8px}
+.bub{padding:8px 12px;border-radius:12px;font-size:13.5px;max-width:85%;white-space:pre-line}
+.bot{background:#fde047;align-self:flex-start}.usr{background:#1c1917;color:#facc15;align-self:flex-end}
+</style></head><body><div class="card">
 <script>
 if(window.Telegram?.WebApp){Telegram.WebApp.ready();Telegram.WebApp.expand();}
 let st={easy:0,medium:0,hard:0,deals:[],pro:0};
