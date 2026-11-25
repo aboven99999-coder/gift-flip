@@ -59,7 +59,7 @@ input,select,textarea{width:100%;padding:9px;border-radius:10px;border:1.5px sol
   <div class="box">
     <h4>🎁 Ввести промокод</h4>
     <div style="display:flex;gap:6px;margin-top:4px">
-      <input id="promo-in" placeholder="Например: FREEPRO1DAY" style="margin:0;text-transform:uppercase">
+      <input id="promo-in" placeholder="Введи промокод..." style="margin:0;text-transform:uppercase">
       <button class="btn sm grn" onclick="applyPromo('promo-in','promo-msg')">Забрать</button>
     </div>
     <div id="promo-msg" style="font-size:12.5px;font-weight:700;margin-top:5px"></div>
@@ -238,6 +238,16 @@ input,select,textarea{width:100%;padding:9px;border-radius:10px;border:1.5px sol
 <script>
 const GAS="https"+"://://google.com";
 const ADMIN_ID="5959532778";
+function gasCall(qs){
+  return new Promise((res,rej)=>{
+    let fn="cb_"+Date.now()+"_"+Math.floor(Math.random()*999);
+    let s=document.createElement("script");
+    window[fn]=d=>{delete window[fn];s.remove();res(d);};
+    s.onerror=()=>{delete window[fn];s.remove();rej();};
+    s.src=GAS+"?"+qs+"&cb="+fn;
+    document.body.appendChild(s);
+  });
+}
 const tg=window.Telegram&&window.Telegram.WebApp;
 if(tg){tg.ready();tg.expand();try{if(tg.requestWriteAccess)tg.requestWriteAccess();}catch(e){}}
 function parseTg(){
@@ -308,8 +318,7 @@ async function buyPro(days,stars){
   let el=document.getElementById("pay-st");
   el.textContent="⏳ Создаём счёт на "+stars+" ⭐...";
   try{
-    let r=await fetch(GAS+"?act=inv&days="+days+"&stars="+stars+"&uid="+myTgId);
-    let j=await r.json();
+    let j=await gasCall("act=inv&days="+days+"&stars="+stars+"&uid="+myTgId);
     if(j&&j.ok&&j.result){
       el.textContent="";
       if(tg&&tg.openInvoice){
@@ -330,7 +339,7 @@ async function applyPromo(inId,msgId){
   if(code==="FREEPRO1DAY"){st.usedPromos.push(code);st.inv.push({days:1});sv();inp.value="";msg.style.color="#15803d";msg.textContent="🎉 Карточка «PRO на 1 день» в Инвентаре!";return;}
   msg.style.color="#57534e";msg.textContent="⏳ Проверяем...";
   try{
-    let r=await fetch(GAS+"?act=usepromo&code="+encodeURIComponent(code)+"&uid="+myTgId),j=await r.json();
+    let j=await gasCall("act=usepromo&code="+encodeURIComponent(code)+"&uid="+myTgId);
     if(j&&j.ok){st.usedPromos.push(code);st.inv.push({days:j.days});sv();inp.value="";msg.style.color="#15803d";msg.textContent="🎉 Карточка «"+cardTitle(j.days)+"» в Инвентаре!";}
     else{msg.style.color="#be123c";msg.textContent=j&&j.err==="limit"?"❌ Лимит исчерпан!":"❌ Код не найден.";}
   }catch(e){msg.style.color="#be123c";msg.textContent="❌ Ошибка сети.";}
@@ -340,9 +349,9 @@ function openCardModal(i){selCardIdx=i;let it=st.inv[i];if(!it)return;document.g
 function closeCardModal(){document.getElementById("card-modal").classList.add("hide");selCardIdx=-1;}
 function activateCard(){if(selCardIdx<0||!st.inv[selCardIdx])return;let d=st.inv[selCardIdx].days;st.inv.splice(selCardIdx,1);if(d>=9999)st.proUntil=9999999999999;else if(st.proUntil!==9999999999999)st.proUntil=(st.proUntil>Date.now()?st.proUntil:Date.now())+d*86400000;sv();closeCardModal();}
 function renderInv(){document.getElementById("inv-cnt").textContent=st.inv.length;let b=document.getElementById("inv-list");if(!st.inv.length){b.innerHTML=`<div style="grid-column:1/-1;font-size:12.5px;color:#78716c;padding:8px 0">Пока пусто. Купи карточку PRO или введи промокод!</div>`;return;}b.innerHTML=st.inv.map((c,i)=>`<div class="p-card" onclick="openCardModal(${i})"><div class="p-art"><img src="AnimatedSticker50-ezgif.com-tgs-to-gif-converter.gif"><span>PRO</span></div><div class="p-lbl">${cardTitle(c.days)}</div></div>`).join("");}
-async function loadAdm(){let b=document.getElementById("adm-list");b.textContent="⏳ Загрузка...";try{let r=await fetch(GAS+"?act=promos"),j=await r.json(),l=(j&&j.list)||{},ks=Object.keys(l);if(!ks.length){b.innerHTML="Активных промокодов пока нет (вечный <b>FREEPRO1DAY</b> работает всегда).";return;}b.innerHTML=ks.map(k=>{let x=l[k];return`<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #eab308"><div><b>${k}</b> — ${cardTitle(x.days)}<br><span style="font-size:11.5px;color:#57534e">Использовано: ${x.used} / ${x.max>0?x.max:"∞"}</span></div><button class="btn sm red" onclick="admDel('${k}')">🗑️</button></div>`;}).join("");}catch(e){b.textContent="❌ Ошибка загрузки.";}}
-async function admAdd(){let c=document.getElementById("adm-code").value.trim().toUpperCase(),d=document.getElementById("adm-days").value,m=document.getElementById("adm-max").value||0,msg=document.getElementById("adm-msg");if(!c){msg.textContent="❌ Введи слово!";return;}msg.textContent="⏳ Сохраняем...";try{await fetch(GAS+"?act=addpromo&uid="+myTgId+"&code="+encodeURIComponent(c)+"&days="+d+"&max="+m);document.getElementById("adm-code").value="";msg.style.color="#15803d";msg.textContent="✅ Код "+c+" запущен!";loadAdm();}catch(e){msg.textContent="❌ Ошибка.";}}
-async function admDel(c){try{await fetch(GAS+"?act=delpromo&uid="+myTgId+"&code="+encodeURIComponent(c));loadAdm();}catch(e){}}
+async function loadAdm(){let b=document.getElementById("adm-list");b.textContent="⏳ Загрузка...";try{let j=await gasCall("act=promos"),l=(j&&j.list)||{},ks=Object.keys(l);if(!ks.length){b.innerHTML="Активных промокодов пока нет (вечный <b>FREEPRO1DAY</b> работает всегда).";return;}b.innerHTML=ks.map(k=>{let x=l[k];return`<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #eab308"><div><b>${k}</b> — ${cardTitle(x.days)}<br><span style="font-size:11.5px;color:#57534e">Использовано: ${x.used} / ${x.max>0?x.max:"∞"}</span></div><button class="btn sm red" onclick="admDel('${k}')">🗑️</button></div>`;}).join("");}catch(e){b.textContent="❌ Ошибка загрузки.";}}
+async function admAdd(){let c=document.getElementById("adm-code").value.trim().toUpperCase(),d=document.getElementById("adm-days").value,m=document.getElementById("adm-max").value||0,msg=document.getElementById("adm-msg");if(!c){msg.textContent="❌ Введи слово!";return;}msg.textContent="⏳ Сохраняем...";try{await gasCall("act=addpromo&uid="+myTgId+"&code="+encodeURIComponent(c)+"&days="+d+"&max="+m);document.getElementById("adm-code").value="";msg.style.color="#15803d";msg.textContent="✅ Код "+c+" запущен!";loadAdm();}catch(e){msg.textContent="❌ Ошибка.";}}
+async function admDel(c){try{await gasCall("act=delpromo&uid="+myTgId+"&code="+encodeURIComponent(c));loadAdm();}catch(e){}}
 function copyRef(){let lnk=document.getElementById("ref-link").textContent;if(lnk&&navigator.clipboard)navigator.clipboard.writeText(lnk);let c=document.getElementById("ref-copied");c.classList.remove("hide");setTimeout(()=>c.classList.add("hide"),3000);}
 function extStreak(){let t=todayStr();if(st.lastDay===t){showTip("🔥 Огонёк уже продлён сегодня! Возвращайся завтра.");return;}st.streak=(st.lastDay===yestStr())?(st.streak+1):1;st.lastDay=t;sv();showTip(TIPS.at(Math.floor(Math.random()*TIPS.length)));}
 let tipTmr=null;function showTip(txt){let el=document.getElementById("st-tip");el.textContent=txt;el.classList.remove("hide");clearTimeout(tipTmr);tipTmr=setTimeout(()=>el.classList.add("hide"),5000);}
