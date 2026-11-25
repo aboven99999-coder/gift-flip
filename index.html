@@ -1,6 +1,7 @@
 <!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GIFT FLIP PRO</title><script src="https://telegram.org"></script><style>
+:root{color-scheme:light}
 *{box-sizing:border-box;margin:0;padding:0;font-family:Segoe UI,sans-serif}
-body{background:#facc15 radial-gradient(#eab308 18%,transparent 19%) 0 0/70px 70px;color:#1c1917;min-height:100vh;padding:12px;display:flex;justify-content:center}
+html,body{background-color:#facc15!important;background-image:radial-gradient(#eab308 18%,transparent 19%);background-size:70px 70px;color:#1c1917!important;min-height:100vh;padding:12px;display:flex;justify-content:center}
 .card{width:100%;max-width:560px;background:#fef9c3;border:3px solid #ca8a04;border-radius:18px;padding:16px;box-shadow:0 10px 25px rgba(0,0,0,.12)}
 .hide{display:none!important}.btn{width:100%;padding:11px;border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;margin-top:8px;transition:.15s}
 .dark{background:#1c1917;color:#facc15}.grn{background:#15803d;color:#fff}.amb{background:#d97706;color:#fff}.pur{background:#6d28d9;color:#fff}.red{background:#dc2626;color:#fff}.gry{background:#d6d3d1;color:#78716c;cursor:not-allowed}.sm{padding:7px 12px;font-size:13px;width:auto;margin:0}
@@ -26,9 +27,16 @@ input,select,textarea{width:100%;padding:9px;border-radius:10px;border:1.5px sol
 .p-lbl{padding:7px 4px;font-size:12.5px;font-weight:900;background:#1c1917;color:#facc15}
 .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.72);display:flex;align-items:center;justify-content:center;padding:16px;z-index:99}
 .modal-box{background:#fef9c3;border:3px solid #facc15;border-radius:18px;padding:16px;width:100%;max-width:340px;text-align:center}
+.st-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;margin-top:8px}
+.st-day{background:#fff;border:1.5px solid #d6d3d1;border-radius:8px;padding:5px 2px;font-size:11px;font-weight:700;text-align:center}
+.st-day.done{background:#dcfce7;border-color:#16a34a;color:#15803d}
+.st-day.gift{border-color:#d97706;background:#fef08a}
+.st-day.gift.done{background:#15803d;color:#fff;border-color:#15803d}
+.live-pill{display:inline-flex;align-items:center;gap:8px;background:#1c1917;color:#fef08a;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:800;margin:6px 0}
 </style></head><body><div class="card">
 <div id="s-splash" style="text-align:center;padding:8px 4px">
   <h1 style="font-size:30px;font-weight:900">GIFT <span style="color:#d97706">FLIP PRO</span></h1>
+  <div class="live-pill"><span>👥 Всего флиперов: <b id="tot-usr">1</b></span><span>|</span><span>🟢 Онлайн: <b id="onl-usr">1</b></span></div>
   <img src="AnimatedSticker0-50-ezgif.com-tgs-to-gif-converter.gif" class="hero">
   <p style="font-size:15px;font-weight:700;color:#44403c;margin-bottom:14px">Вас приветствует GIFT FLIP PRO! Умный анализатор Telegram NFT-подарков и ИИ-помощник флипера. Давайте начнём!</p>
   <button class="btn dark" onclick="go('menu')">🦆 ПОГНАЛИ ФЛИПАТЬ!</button>
@@ -78,6 +86,11 @@ input,select,textarea{width:100%;padding:9px;border-radius:10px;border:1.5px sol
     </div>
     <button id="st-btn" class="btn amb" onclick="extStreak()">🔥 Продлить огонёк</button>
     <div id="st-tip" class="box hide" style="margin-top:8px;background:#fef08a;font-weight:700;font-size:13px"></div>
+    <div style="margin-top:10px;text-align:left">
+      <b style="font-size:13px">🎁 Награды за огонёк (30 дней):</b>
+      <p style="font-size:11.5px;color:#57534e;margin:2px 0 4px">Дни 3, 7, 10, 15, 20, 25 ➔ <b>PRO на 1 день</b> | День 30 ➔ <b>PRO на 7 дней</b></p>
+      <div id="st-road" class="st-grid"></div>
+    </div>
   </div>
 
   <div class="box"><h4>🏅 Выбор звания</h4><div id="rank-list" style="margin-top:6px"></div></div>
@@ -234,11 +247,10 @@ input,select,textarea{width:100%;padding:9px;border-radius:10px;border:1.5px sol
   </div>
 </div>
 
+</div>
 <script>
 const GAS_ID="AKfycbzcRI2o-eSrstLp-A3FLSZBC6eVoKIisXYG19c_IahPJ2gZcnlm3vunzm6MMQ4dJn7K";
 const GAS="https"+"://"+"script."+"google.com"+"/macros"+"/s/"+GAS_ID+"/exec";
-
-
 const ADMIN_ID="5959532778";
 function gasCall(qs){
   return new Promise((res,rej)=>{
@@ -265,10 +277,11 @@ function parseTg(){
 let tgInfo=parseTg(),uObj=tgInfo.u;
 let myTgId=uObj&&uObj.id?String(uObj.id):"guest";
 let sKey="gf_v8_"+myTgId;
-let st={easy:0,medium:0,hard:0,deals:[],proUntil:0,inv:[],usedPromos:[],rank:"🐣 НОВИЧОК",streak:0,lastDay:"",uid:0,refs:0,refBy:""};
+let st={easy:0,medium:0,hard:0,deals:[],proUntil:0,inv:[],usedPromos:[],stRewards:[],rank:"🐣 НОВИЧОК",streak:0,lastDay:"",uid:0,refs:0,refBy:""};
 try{let s=JSON.parse(localStorage.getItem(sKey));if(s)st=Object.assign(st,s);}catch(e){}
 if(!Array.isArray(st.inv))st.inv=[];
 if(!Array.isArray(st.usedPromos))st.usedPromos=[];
+if(!Array.isArray(st.stRewards))st.stRewards=[];
 const TIPS=["💡 Покупай подарки с чистым монохромом у самого флора — они уходят быстрее всего!","💡 Не вкладывай больше 25–30% банка в один лот, даже если он кажется идеальным.","💡 Чёрный фон (Onyx) даёт наценку +40..80% даже без совпадения цвета фигурки.","💡 Первая сотня номеров (#1–#99) всегда стоит в 2–5 раз дороже обычного флора.","💡 Перед покупкой обязательно проверяй историю последних продаж, а не только витрину.","💡 Избегай покупок в первые 1–2 часа после выхода апгрейда — это пик FOMO."];
 function todayStr(){return new Date().toISOString().slice(0,10);}
 function yestStr(){let d=new Date();d.setDate(d.getDate()-1);return d.toISOString().slice(0,10);}
@@ -301,6 +314,15 @@ async function initProf(){
     if(!assigned){assigned=u&&u.id?(100+(Number(u.id)%899)):(100+Math.floor(Math.random()*899));}
     st.uid=assigned;sv();
   }
+  try{
+    let tr=await fetch(API+"/get"+NS+"users"),tj=await tr.json();
+    let tot=(tj&&typeof tj.value==="number")?tj.value:Math.max(1,(st.uid||100)-99);
+    document.getElementById("tot-usr").textContent=tot;
+    let slot="onl_"+Math.floor(Date.now()/300000);
+    let or=await fetch(API+"/hit"+NS+slot),oj=await or.json();
+    let onl=(oj&&typeof oj.value==="number")?Math.min(tot,Math.max(1,oj.value)):1;
+    document.getElementById("onl-usr").textContent=onl;
+  }catch(e){}
   let botUrl="https"+"://t.me/gift_flip_pro_duck_bot/app?startapp=ref_"+st.uid;
   let shareTxt="🦆 Залетай в GIFT FLIP PRO — умный сканер Telegram NFT-подарков, тренажёр закупок и ИИ-помощник флипера!";
   document.getElementById("p-id").textContent="ID #"+st.uid;
@@ -354,12 +376,37 @@ function renderInv(){document.getElementById("inv-cnt").textContent=st.inv.lengt
 async function loadAdm(){let b=document.getElementById("adm-list");b.textContent="⏳ Загрузка...";try{let j=await gasCall("act=promos"),l=(j&&j.list)||{},ks=Object.keys(l);if(!ks.length){b.innerHTML="Активных промокодов пока нет (вечный <b>FREEPRO1DAY</b> работает всегда).";return;}b.innerHTML=ks.map(k=>{let x=l[k];return`<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #eab308"><div><b>${k}</b> — ${cardTitle(x.days)}<br><span style="font-size:11.5px;color:#57534e">Использовано: ${x.used} / ${x.max>0?x.max:"∞"}</span></div><button class="btn sm red" onclick="admDel('${k}')">🗑️</button></div>`;}).join("");}catch(e){b.textContent="❌ Ошибка загрузки.";}}
 async function admAdd(){let c=document.getElementById("adm-code").value.trim().toUpperCase(),d=document.getElementById("adm-days").value,m=document.getElementById("adm-max").value||0,msg=document.getElementById("adm-msg");if(!c){msg.textContent="❌ Введи слово!";return;}msg.textContent="⏳ Сохраняем...";try{await gasCall("act=addpromo&uid="+myTgId+"&code="+encodeURIComponent(c)+"&days="+d+"&max="+m);document.getElementById("adm-code").value="";msg.style.color="#15803d";msg.textContent="✅ Код "+c+" запущен!";loadAdm();}catch(e){msg.textContent="❌ Ошибка.";}}
 async function admDel(c){try{await gasCall("act=delpromo&uid="+myTgId+"&code="+encodeURIComponent(c));loadAdm();}catch(e){}}
+const ST_MILESTONES={3:1,7:1,10:1,15:1,20:1,25:1,30:7};
 function copyRef(){let lnk=document.getElementById("ref-link").textContent;if(lnk&&navigator.clipboard)navigator.clipboard.writeText(lnk);let c=document.getElementById("ref-copied");c.classList.remove("hide");setTimeout(()=>c.classList.add("hide"),3000);}
-function extStreak(){let t=todayStr();if(st.lastDay===t){showTip("🔥 Огонёк уже продлён сегодня! Возвращайся завтра.");return;}st.streak=(st.lastDay===yestStr())?(st.streak+1):1;st.lastDay=t;sv();showTip(TIPS.at(Math.floor(Math.random()*TIPS.length)));}
-let tipTmr=null;function showTip(txt){let el=document.getElementById("st-tip");el.textContent=txt;el.classList.remove("hide");clearTimeout(tipTmr);tipTmr=setTimeout(()=>el.classList.add("hide"),5000);}
+function extStreak(){
+  let t=todayStr();
+  if(st.lastDay===t){showTip("🔥 Огонёк уже продлён сегодня! Возвращайся завтра.");return;}
+  st.streak=(st.lastDay===yestStr())?(st.streak+1):1;
+  if(st.streak===1)st.stRewards=[];
+  st.lastDay=t;
+  let rew=ST_MILESTONES[st.streak],bonusTxt="";
+  if(rew&&!st.stRewards.includes(st.streak)){
+    st.stRewards.push(st.streak);
+    st.inv.push({days:rew});
+    bonusTxt="\n🎁 Награда за "+st.streak+"-й день огонька: карточка «"+cardTitle(rew)+"» добавлена в Инвентарь!";
+  }
+  sv();
+  showTip(TIPS.at(Math.floor(Math.random()*TIPS.length))+bonusTxt);
+}
+let tipTmr=null;function showTip(txt){let el=document.getElementById("st-tip");el.textContent=txt;el.classList.remove("hide");clearTimeout(tipTmr);tipTmr=setTimeout(()=>el.classList.add("hide"),6500);}
 function setRank(r){st.rank=r;sv();}
+function renderStreakRoad(){
+  let box=document.getElementById("st-road");if(!box)return;
+  let html="";
+  for(let d=1;d<=30;d++){
+    let rew=ST_MILESTONES[d],done=st.streak>=d;
+    let lbl=rew?(rew===7?"🎁7д":"🎁1д"):(done?"🔥":d+"д");
+    html+=`<div class="st-day ${done?'done':''} ${rew?'gift':''}">${d} дн.<br>${lbl}</div>`;
+  }
+  box.innerHTML=html;
+}
 function upd(){
-  if(st.lastDay&&st.lastDay!==todayStr()&&st.lastDay!==yestStr()){st.streak=0;}
+  if(st.lastDay&&st.lastDay!==todayStr()&&st.lastDay!==yestStr()){st.streak=0;st.stRewards=[];}
   let on=st.lastDay===todayStr()&&st.streak>0;
   let img=on?"fire-duck.gif.gif":"ice-duck.gif.gif",cls=on?"fire-txt":"ice-txt";
   document.getElementById("st-img-p").src=img;document.getElementById("st-img-m").src=img;
@@ -382,7 +429,7 @@ function upd(){
   document.getElementById("ps").className=active?"bdg pro":"bdg";
   if(active){document.getElementById("plock").classList.add("hide");document.getElementById("ppan").classList.remove("hide");}
   else{document.getElementById("plock").classList.remove("hide");document.getElementById("ppan").classList.add("hide");}
-  renderInv();
+  renderInv();renderStreakRoad();
 }
 function go(n){["splash","prof","adm","menu","guide","cases","test","pro"].forEach(s=>{let e=document.getElementById("s-"+s);if(e)e.classList.add("hide");});let t=document.getElementById("s-"+n);if(t)t.classList.remove("hide");upd();if(n==="test")qm();if(n==="adm")loadAdm();if(n==="pro"&&isPro()){rdr();gmm();}}
 function pt(t,b){document.querySelectorAll(".tb").forEach(x=>x.classList.remove("act"));b.classList.add("act");["sc","bt","gm","ps2","dr","ai"].forEach(x=>{let e=document.getElementById("p-"+x);if(e)e.classList.add("hide");});document.getElementById("p-"+t).classList.remove("hide");}
